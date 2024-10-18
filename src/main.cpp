@@ -1,3 +1,8 @@
+/**
+* @author Maria Gomez Baeza
+* @date Oct 18, 2024
+*/
+
 #include <Arduino.h>
 #include <DHT.h>
 #include <Adafruit_Sensor.h>
