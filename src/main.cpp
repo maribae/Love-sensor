@@ -1,9 +1,20 @@
 #include <Arduino.h>
 #include <DHT.h>
 #include <Adafruit_Sensor.h>
+#include <LiquidCrystal.h>
+#include <Wire.h>
 
 #define DHT_PIN A0
 #define DHT_TYPE DHT11
+
+LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
+
+// LCD RS: Connect to digital pin 12
+// LCD Enable: Connect to digital pin 11
+// LCD D4: Connect to digital pin 5
+// LCD D5: Connect to digital pin 4
+// LCD D6: Connect to digital pin 3
+// LCD D7: Connect to digital pin 2
 
 /**
  * @brief DHT sensor object initialization
@@ -50,6 +61,8 @@ void setup() {
 		pinMode(pinNumber, OUTPUT);
 		digitalWrite(pinNumber, LOW);
   }
+  lcd.begin(16,2);
+  lcd.setCursor(0, 0);
 }
 
 /**
@@ -65,6 +78,12 @@ void loop() {
   Serial.println("Temperature: ");
   Serial.print(temperature);
   Serial.println(" °C");
+
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Temp: ");
+  lcd.print(temperature);  //printing temperarture to the LCD display
+  lcd.print("'C");
 
   if(temperature < baseTemp){ 
 		//temperature is below baseline 
